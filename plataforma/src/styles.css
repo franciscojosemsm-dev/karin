@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Misma línea visual que el sitio de Ruiz & Morales y PsicoApp: esmeralda, Fraunces para títulos, Figtree para el texto. */
+@theme {
+  --font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --color-fondo: #f6f8f7;
+  --color-tarjeta: #ffffff;
+  --color-texto: #1c2725;
+  --color-suave: #56625e;
+  --color-borde: #d9e2de;
+  --color-borde-f: #a3b0ab;
+  --color-primario: #047857;
+  --color-primario-f: #065f46;
+  --color-menta: #ecfdf5;
+  --color-menta-f: #d1fae5;
+  --color-gris: #eff3f1;
+  --color-arena: #fffbeb;
+  --color-arena-t: #92400e;
+  --color-rosa: #fff1f2;
+  --color-riesgo: #b4233c;
+  --color-lav: #f3f5fc;
+  --color-lav-t: #3f4a94;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--color-fondo); color: var(--color-texto); font-family: var(--font-sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 3px solid color-mix(in srgb, var(--color-primario) 45%, transparent); outline-offset: 2px; }
+  input, select, textarea { font: inherit; }
+}
+
+@layer components {
+  .titulo { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; }
+  .tarjeta { background: var(--color-tarjeta); border: 1px solid var(--color-borde); border-radius: 1rem; }
+  .boton { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: .5rem; border-radius: .6rem; background: var(--color-primario); padding: 0 1.1rem; font-size: .94rem; font-weight: 600; color: #fff; transition: background .15s; cursor: pointer; }
+  .boton:hover { background: var(--color-primario-f); }
+  .boton:disabled { opacity: .55; cursor: wait; }
+  .boton-s { display: inline-flex; min-height: 2.5rem; align-items: center; justify-content: center; gap: .5rem; border-radius: .6rem; border: 1px solid var(--color-borde); background: var(--color-tarjeta); padding: 0 .95rem; font-size: .9rem; font-weight: 500; color: var(--color-texto); cursor: pointer; transition: background .15s; }
+  .boton-s:hover { background: var(--color-menta); border-color: var(--color-menta-f); }
+  .enlace { font-weight: 600; color: var(--color-primario); text-underline-offset: 3px; cursor: pointer; }
+  .enlace:hover { text-decoration: underline; }
+  .campo { width: 100%; border-radius: .7rem; border: 1px solid var(--color-borde); background: var(--color-tarjeta); padding: .6rem .85rem; font-size: .95rem; color: var(--color-texto); transition: border-color .15s, box-shadow .15s; }
+  .campo:hover { border-color: var(--color-borde-f); }
+  .campo:focus { outline: none; border-color: var(--color-primario); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primario) 15%, transparent); }
+  .etiqueta { display: block; margin-bottom: .35rem; font-size: .86rem; font-weight: 600; }
+  .ayuda { font-size: .82rem; color: var(--color-suave); }
+  .pildora { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; padding: .1rem .7rem; font-size: .78rem; font-weight: 600; }
+  .bg-hero { background: radial-gradient(ellipse 60% 80% at 0% 0%, #dcf3e7 0, transparent 70%), radial-gradient(ellipse 50% 70% at 100% 100%, #e6e9fb 0, transparent 70%), var(--color-fondo); }
+}
+
+@media print {
+  .no-imprimir { display: none !important; }
+  body { background: #fff; }
+  .tarjeta { border-color: #ccc; }
+}
