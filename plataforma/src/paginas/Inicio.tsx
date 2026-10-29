@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, QrCode, Lock, Clock, FileText, MessagesSquare, ListChecks, ShieldCheck } from 'lucide-react';
+import { ArrowRight, QrCode, Lock, Clock, FileText, MessagesSquare, ListChecks, ShieldCheck, Briefcase } from 'lucide-react';
 
 const funciones = [
   { Icono: QrCode, t: 'Canal de denuncias propio', d: 'Un enlace y un código QR para su empresa, con afiche para imprimir. Pide los datos que exige el reglamento (DS 21/2024, art. 11).' },
@@ -34,6 +34,14 @@ export default function Inicio() {
               <p className="mt-1.5 text-[0.93rem] text-suave">{d}</p>
             </div>
           ))}
+        </div>
+        <div className="tarjeta mt-6 grid gap-5 p-6 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <p className="pildora mb-2 bg-menta text-primario-f"><Briefcase className="size-3.5" aria-hidden />Para quienes investigan</p>
+            <h2 className="titulo text-[1.4rem]">Mesa del investigador</h2>
+            <p className="mt-1 max-w-[62ch] text-suave">Expedientes cifrados en su navegador, plazos del caso, lista de control del debido proceso según el DS 21/2024, actas de declaración listas para firmar en cada hoja e informe con el contenido del art. 16 y la marca de su consultora.</p>
+          </div>
+          <Link className="boton" to="/mesa">Abrir mi mesa<ArrowRight className="size-4" aria-hidden /></Link>
         </div>
         <div className="tarjeta mt-6 flex flex-col items-start gap-3 p-6 md:flex-row md:items-center md:justify-between">
           <div>

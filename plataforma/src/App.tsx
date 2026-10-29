@@ -13,6 +13,10 @@ import Afiche from './paginas/Afiche';
 import Canal from './paginas/Canal';
 import Seguimiento from './paginas/Seguimiento';
 import Privacidad from './paginas/Privacidad';
+import Mesa from './paginas/Mesa';
+import Expediente from './paginas/Expediente';
+import { Acta, Informe } from './paginas/Documentos';
+import { ProveedorBoveda } from './lib/boveda';
 
 function Privada({ children }: { children: ReactNode }) {
   const { sesion, cargando } = useSesion();
@@ -23,6 +27,7 @@ function Privada({ children }: { children: ReactNode }) {
 export default function App() {
   return (
     <ProveedorSesion>
+      <ProveedorBoveda>
       <BrowserRouter>
         <Encabezado />
         <Routes>
@@ -36,10 +41,15 @@ export default function App() {
           <Route path="/panel/registrar" element={<Privada><RegistrarDenuncia /></Privada>} />
           <Route path="/panel/afiche" element={<Privada><Afiche /></Privada>} />
           <Route path="/panel/denuncia/:id" element={<Privada><DenunciaDetalle /></Privada>} />
+          <Route path="/mesa" element={<Privada><Mesa /></Privada>} />
+          <Route path="/mesa/expediente/:id" element={<Privada><Expediente /></Privada>} />
+          <Route path="/mesa/expediente/:id/acta/:eid" element={<Privada><Acta /></Privada>} />
+          <Route path="/mesa/expediente/:id/informe" element={<Privada><Informe /></Privada>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Pie />
       </BrowserRouter>
+      </ProveedorBoveda>
     </ProveedorSesion>
   );
 }

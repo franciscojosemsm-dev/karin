@@ -55,3 +55,16 @@
   body { background: #fff; }
   .tarjeta { border-color: #ccc; }
 }
+
+/* Documentos de la Mesa del investigador: en papel, sin marco. En las actas, las líneas de firma y el número de página
+   se imprimen en el margen inferior de cada hoja (DS 21/2024, art. 15: firma en todas sus hojas). */
+@page { margin: 20mm 18mm 22mm; }
+@page acta {
+  margin: 20mm 18mm 30mm;
+  @bottom-left { content: "Firma compareciente: ____________________"; font-size: 9pt; }
+  @bottom-right { content: "Firma de quien investiga: ____________________   Hoja " counter(page) " de " counter(pages); font-size: 9pt; }
+}
+@media print {
+  .documento { border: 0 !important; padding: 0 !important; box-shadow: none !important; }
+  .hoja-acta { page: acta; }
+}
