@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
 import { supabase, mensajeError } from '../lib/supabase';
 import FormularioDenuncia from '../componentes/FormularioDenuncia';
 import Comprobante, { type DatosComprobante } from '../componentes/Comprobante';
@@ -27,11 +26,11 @@ export default function Canal() {
     <main className="mx-auto max-w-[760px] px-4 py-10 md:py-14">
       {hecho ? <Comprobante c={hecho} /> : (
         <>
-          <p className="pildora mb-3 border border-borde bg-white text-suave"><ShieldCheck className="size-3.5 text-primario" aria-hidden />Canal de denuncias · Ley 21.643</p>
+          <p className="mb-2 text-[0.86rem] text-suave">Canal de denuncias · Ley 21.643</p>
           <h1 className="titulo text-[2rem] leading-tight md:text-[2.4rem]">{empresa}</h1>
           <p className="mb-8 mt-2 max-w-[60ch] text-suave">
             Use este formulario para denunciar acoso laboral, acoso sexual o violencia en el trabajo. También puede denunciar directamente ante la{' '}
-            <a className="enlace" href="https://www.dt.gob.cl" target="_blank" rel="noreferrer">Dirección del Trabajo</a>.
+            <a className="enlace" href="https://www.dt.gob.cl" target="_blank" rel="noopener noreferrer">Dirección del Trabajo</a>.
           </p>
           <FormularioDenuncia onEnviar={async datos => {
             const { data, error } = await supabase.rpc('crear_denuncia', { p_slug: slug, p_datos: datos });

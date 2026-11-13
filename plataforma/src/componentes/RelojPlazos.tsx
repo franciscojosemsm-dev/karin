@@ -3,7 +3,7 @@ import type { Hito, EstadoHito } from '../lib/plazos';
 import { fechaLarga } from '../lib/fechas';
 
 const ESTILO: Record<EstadoHito, { txt: string; cls: string; Icono: typeof Clock }> = {
-  cumplido: { txt: 'Cumplido', cls: 'bg-menta-f text-primario-f', Icono: CheckCircle2 },
+  cumplido: { txt: 'Cumplido', cls: 'bg-ok-bg text-ok', Icono: CheckCircle2 },
   cumplido_tarde: { txt: 'Cumplido fuera de plazo', cls: 'bg-arena text-arena-t', Icono: AlertTriangle },
   vencido: { txt: 'Vencido', cls: 'bg-rosa text-riesgo', Icono: AlertTriangle },
   hoy: { txt: 'Vence hoy', cls: 'bg-rosa text-riesgo', Icono: AlertTriangle },

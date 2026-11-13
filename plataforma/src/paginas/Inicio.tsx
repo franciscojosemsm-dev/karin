@@ -1,54 +1,78 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, QrCode, Lock, Clock, FileText, MessagesSquare, ListChecks, ShieldCheck, Briefcase } from 'lucide-react';
+import { SITIO_CONTACTO } from '../lib/enlaces';
+
+const plazos = [
+  ['De inmediato', 'Adoptar medidas de resguardo', 'art. 13'],
+  ['3 días hábiles', 'Informar a la Dirección del Trabajo o derivarle la denuncia', 'art. 12'],
+  ['30 días hábiles', 'Concluir la investigación', 'art. 17'],
+  ['2 días hábiles', 'Remitir el informe a la Dirección del Trabajo', 'art. 18'],
+  ['15 días corridos', 'Aplicar las medidas o sanciones', 'art. 19']
+];
 
 const funciones = [
-  { Icono: QrCode, t: 'Canal de denuncias propio', d: 'Un enlace y un código QR para su empresa, con afiche para imprimir. Pide los datos que exige el reglamento (DS 21/2024, art. 11).' },
-  { Icono: FileText, t: 'Comprobante inmediato', d: 'Quien denuncia recibe su comprobante con fecha, hora y folio, y un código para seguir el caso.' },
-  { Icono: Lock, t: 'Identidad reservada', d: 'Solo las personas que usted designa ven quién denunció. Cada empresa ve únicamente sus propias denuncias.' },
-  { Icono: Clock, t: 'Reloj de plazos', d: 'Cada denuncia calcula sus plazos en días hábiles, con feriados nacionales, y le avisa qué vence y cuándo.' },
-  { Icono: MessagesSquare, t: 'Comunicación con quien denuncia', d: 'Mensajes reservados entre la empresa y la persona denunciante, sin intercambiar correos personales.' },
-  { Icono: ListChecks, t: 'Bitácora', d: 'Cada avance queda registrado con fecha y autor, para acreditar ante una fiscalización lo que hizo la empresa.' }
+  ['Canal propio', 'Un enlace y un código QR para su empresa, con afiche para imprimir. El formulario pide los datos que exige el reglamento (DS 21/2024, art. 11).'],
+  ['Comprobante', 'Quien denuncia recibe folio, fecha y hora, y un código con clave para seguir el caso.'],
+  ['Identidad reservada', 'La identidad se guarda aparte del relato y la ven solo las personas que usted designa. Cada empresa ve sus propias denuncias y ninguna otra.'],
+  ['Plazos', 'Cada denuncia calcula sus plazos en días hábiles, con los feriados nacionales y los días inhábiles de su empresa. Se exportan al calendario.'],
+  ['Mensajes', 'La empresa y la persona denunciante se escriben dentro de la plataforma, sin usar correos personales.'],
+  ['Bitácora', 'Cada actuación queda con fecha y autor. Sirve para mostrar en una fiscalización qué hizo la empresa y cuándo.']
 ];
 
 export default function Inicio() {
   return (
     <main>
-      <section className="bg-hero">
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-4 pb-20 pt-16 text-center md:pt-24">
-          <p className="pildora border border-borde bg-white text-suave"><ShieldCheck className="size-3.5 text-primario" aria-hidden />Ley 21.643 · Ley Karin</p>
-          <h1 className="titulo mt-5 max-w-[20ch] text-[2.3rem] leading-[1.08] md:text-[3.3rem]">El canal de denuncias y los plazos de la Ley Karin, en un solo lugar</h1>
-          <p className="mt-5 max-w-[50ch] text-[1.05rem] text-suave">Reciba denuncias con reserva de identidad y lleve el control de cada plazo legal, desde la recepción hasta la aplicación de medidas.</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link className="boton" to="/ingresar">Crear el canal de mi empresa<ArrowRight className="size-4" aria-hidden /></Link>
-            <Link className="boton-s" to="/seguimiento">Seguir una denuncia</Link>
+      <section className="border-b border-borde">
+        <div className="mx-auto grid max-w-[1100px] gap-10 px-4 py-12 md:grid-cols-[1.1fr_0.9fr] md:gap-14 md:px-8 md:py-16">
+          <div>
+            <p className="text-[0.86rem] text-suave">Ley 21.643 y su reglamento · versión piloto</p>
+            <h1 className="titulo mt-3 max-w-[20ch] text-[2rem] md:text-[2.6rem]">Canal de denuncias y control de plazos de la Ley Karin</h1>
+            <p className="mt-4 max-w-[52ch] text-[1.03rem] text-suave">Su empresa recibe las denuncias por un enlace propio. Desde ese momento la plataforma calcula cada plazo en días hábiles y le muestra qué vence primero.</p>
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <Link className="boton" to="/ingresar">Crear el canal de mi empresa</Link>
+              <Link className="enlace" to="/seguimiento">Seguir una denuncia</Link>
+            </div>
           </div>
-          <p className="ayuda mt-4">Versión piloto.</p>
+          <div>
+            <h2 className="text-[0.86rem] font-bold">Los plazos que controla</h2>
+            <table className="mt-2 w-full border-t border-texto text-[0.93rem]">
+              <tbody>
+                {plazos.map(([plazo, hito, art]) => (
+                  <tr key={hito} className="border-b border-borde align-top">
+                    <th scope="row" className="cifra w-[9.5rem] py-2.5 pr-3 text-left font-bold">{plazo}</th>
+                    <td className="py-2.5">{hito} <span className="whitespace-nowrap text-suave">({art})</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="ayuda mt-2">Artículos del DS 21/2024 del Ministerio del Trabajo. Los días hábiles excluyen sábados, domingos y festivos (art. 1).</p>
+          </div>
         </div>
       </section>
-      <section className="mx-auto max-w-[1100px] px-4 py-14">
-        <div className="grid gap-4 md:grid-cols-3">
-          {funciones.map(({ Icono, t, d }) => (
-            <div key={t} className="tarjeta p-6">
-              <Icono className="size-[22px] text-primario" aria-hidden />
-              <h2 className="mt-3 font-semibold">{t}</h2>
-              <p className="mt-1.5 text-[0.93rem] text-suave">{d}</p>
+
+      <section className="mx-auto max-w-[1100px] px-4 py-12 md:px-8">
+        <h2 className="titulo text-[1.45rem]">Qué hace la plataforma</h2>
+        <dl className="mt-5 grid gap-x-14 md:grid-cols-2">
+          {funciones.map(([t, d]) => (
+            <div key={t} className="grid gap-1 border-t border-borde py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+              <dt className="font-bold">{t}</dt>
+              <dd className="text-[0.95rem] text-suave">{d}</dd>
             </div>
           ))}
-        </div>
-        <div className="tarjeta mt-6 grid gap-5 p-6 md:grid-cols-[1fr_auto] md:items-center">
+        </dl>
+      </section>
+
+      <section className="mx-auto max-w-[1100px] px-4 pb-6 md:px-8">
+        <div className="grid gap-10 border-t border-texto pt-8 md:grid-cols-2 md:gap-14">
           <div>
-            <p className="pildora mb-2 bg-menta text-primario-f"><Briefcase className="size-3.5" aria-hidden />Para quienes investigan</p>
-            <h2 className="titulo text-[1.4rem]">Mesa del investigador</h2>
-            <p className="mt-1 max-w-[62ch] text-suave">Expedientes cifrados en su navegador, plazos del caso, lista de control del debido proceso según el DS 21/2024, actas de declaración listas para firmar en cada hoja e informe con el contenido del art. 16 y la marca de su consultora.</p>
+            <h2 className="titulo text-[1.3rem]">Mesa del investigador</h2>
+            <p className="mt-2 text-[0.97rem] text-suave">Para quien conduce la investigación. El expediente se cifra en su navegador antes de guardarse, de modo que ni la consultora ni el proveedor de la base de datos pueden leerlo. Incluye la lista de control del DS 21/2024, las actas de declaración para firmar en cada hoja y el informe con el contenido del art. 16.</p>
+            <p className="mt-3"><Link className="enlace" to="/mesa">Abrir mi mesa</Link></p>
           </div>
-          <Link className="boton" to="/mesa">Abrir mi mesa<ArrowRight className="size-4" aria-hidden /></Link>
-        </div>
-        <div className="tarjeta mt-6 flex flex-col items-start gap-3 p-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="titulo text-[1.3rem]">¿Necesita una investigación externa?</h2>
-            <p className="text-suave">Ruiz &amp; Morales Consultores conduce investigaciones con abogado y psicóloga clínica, por encargo del empleador.</p>
+            <h2 className="titulo text-[1.3rem]">Investigación externa</h2>
+            <p className="mt-2 text-[0.97rem] text-suave">Si su empresa prefiere encargar la investigación, Ruiz &amp; Morales Consultores la conduce con un abogado y una psicóloga clínica, por encargo del empleador.</p>
+            <p className="mt-3"><a className="enlace" href={SITIO_CONTACTO} target="_blank" rel="noopener noreferrer">Pedir una evaluación inicial</a></p>
           </div>
-          <a className="boton-s" href="https://ruizmorales-consultores.lovable.app/#contacto" target="_blank" rel="noreferrer">Conocer el servicio</a>
         </div>
       </section>
     </main>

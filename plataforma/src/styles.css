@@ -1,30 +1,45 @@
 @import "tailwindcss";
 
-/* Misma línea visual que el sitio de Ruiz & Morales y PsicoApp: esmeralda, Fraunces para títulos, Figtree para el texto. */
+/* Línea común de Ruiz & Morales (la del afiche y el sitio): azul marino para el texto y las acciones, papel blanco,
+   bordes finos. Lato para el texto y Libre Baskerville para los títulos, servidas desde este mismo sitio.
+   Los colores de estado tienen un solo uso: rojo vence o venció, ámbar por vencer, verde cumplido. */
+@font-face { font-family: "Lato"; font-weight: 400; font-display: swap; src: url("/fuentes/lato-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 700; font-display: swap; src: url("/fuentes/lato-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Libre Baskerville"; font-weight: 400; font-display: swap; src: url("/fuentes/libre-baskerville-latin-400-normal.woff2") format("woff2"); }
+
 @theme {
-  --font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Fraunces", Georgia, serif;
-  --color-fondo: #f6f8f7;
+  --font-sans: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Libre Baskerville", Georgia, serif;
+  --font-weight-medium: 700;
+  --font-weight-semibold: 700;
+  --radius-md: 3px;
+  --radius-lg: 3px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --color-fondo: #ffffff;
   --color-tarjeta: #ffffff;
-  --color-texto: #1c2725;
-  --color-suave: #56625e;
-  --color-borde: #d9e2de;
-  --color-borde-f: #a3b0ab;
-  --color-primario: #047857;
-  --color-primario-f: #065f46;
-  --color-menta: #ecfdf5;
-  --color-menta-f: #d1fae5;
-  --color-gris: #eff3f1;
-  --color-arena: #fffbeb;
-  --color-arena-t: #92400e;
-  --color-rosa: #fff1f2;
-  --color-riesgo: #b4233c;
-  --color-lav: #f3f5fc;
-  --color-lav-t: #3f4a94;
+  --color-texto: #142340;
+  --color-suave: #555c69;
+  --color-borde: #d6d9e0;
+  --color-borde-f: #9aa1ae;
+  --color-primario: #142340;
+  --color-primario-f: #0b1730;
+  --color-oro: #8a691d;
+  --color-menta: #f1f3f7;
+  --color-menta-f: #e2e6ee;
+  --color-gris: #f3f4f6;
+  --color-ok: #1f6b45;
+  --color-ok-bg: #e8f3ec;
+  --color-arena: #fdf5e0;
+  --color-arena-t: #7a4b00;
+  --color-rosa: #fdecee;
+  --color-riesgo: #a8202f;
+  --color-lav: #f1f3f7;
+  --color-lav-t: #2f3d63;
 }
 
 @layer base {
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; font-variant-numeric: lining-nums; }
   body { background: var(--color-fondo); color: var(--color-texto); font-family: var(--font-sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   h1, h2, h3 { text-wrap: balance; }
   :focus-visible { outline: 3px solid color-mix(in srgb, var(--color-primario) 45%, transparent); outline-offset: 2px; }
@@ -32,22 +47,22 @@
 }
 
 @layer components {
-  .titulo { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; }
-  .tarjeta { background: var(--color-tarjeta); border: 1px solid var(--color-borde); border-radius: 1rem; }
-  .boton { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: .5rem; border-radius: .6rem; background: var(--color-primario); padding: 0 1.1rem; font-size: .94rem; font-weight: 600; color: #fff; transition: background .15s; cursor: pointer; }
+  .titulo { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.005em; line-height: 1.25; }
+  .tarjeta { background: var(--color-tarjeta); border: 1px solid var(--color-borde); border-radius: 4px; }
+  .boton { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: .5rem; border-radius: 3px; background: var(--color-primario); padding: 0 1.1rem; font-size: .94rem; font-weight: 700; color: #fff; transition: background .15s; cursor: pointer; }
   .boton:hover { background: var(--color-primario-f); }
   .boton:disabled { opacity: .55; cursor: wait; }
-  .boton-s { display: inline-flex; min-height: 2.5rem; align-items: center; justify-content: center; gap: .5rem; border-radius: .6rem; border: 1px solid var(--color-borde); background: var(--color-tarjeta); padding: 0 .95rem; font-size: .9rem; font-weight: 500; color: var(--color-texto); cursor: pointer; transition: background .15s; }
+  .boton-s { display: inline-flex; min-height: 2.5rem; align-items: center; justify-content: center; gap: .5rem; border-radius: 3px; border: 1px solid var(--color-borde-f); background: var(--color-tarjeta); padding: 0 .95rem; font-size: .9rem; font-weight: 700; color: var(--color-texto); cursor: pointer; transition: background .15s; }
   .boton-s:hover { background: var(--color-menta); border-color: var(--color-menta-f); }
-  .enlace { font-weight: 600; color: var(--color-primario); text-underline-offset: 3px; cursor: pointer; }
-  .enlace:hover { text-decoration: underline; }
-  .campo { width: 100%; border-radius: .7rem; border: 1px solid var(--color-borde); background: var(--color-tarjeta); padding: .6rem .85rem; font-size: .95rem; color: var(--color-texto); transition: border-color .15s, box-shadow .15s; }
+  .enlace { font-weight: 700; color: var(--color-primario); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; cursor: pointer; }
+  .enlace:hover { text-decoration-thickness: 2px; }
+  .campo { width: 100%; border-radius: 3px; border: 1px solid var(--color-borde-f); background: var(--color-tarjeta); padding: .6rem .85rem; font-size: .95rem; color: var(--color-texto); transition: border-color .15s, box-shadow .15s; }
   .campo:hover { border-color: var(--color-borde-f); }
-  .campo:focus { outline: none; border-color: var(--color-primario); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primario) 15%, transparent); }
-  .etiqueta { display: block; margin-bottom: .35rem; font-size: .86rem; font-weight: 600; }
+  .campo:focus { outline: none; border-color: var(--color-primario); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primario) 18%, transparent); }
+  .etiqueta { display: block; margin-bottom: .35rem; font-size: .86rem; font-weight: 700; }
   .ayuda { font-size: .82rem; color: var(--color-suave); }
-  .pildora { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; padding: .1rem .7rem; font-size: .78rem; font-weight: 600; }
-  .bg-hero { background: radial-gradient(ellipse 60% 80% at 0% 0%, #dcf3e7 0, transparent 70%), radial-gradient(ellipse 50% 70% at 100% 100%, #e6e9fb 0, transparent 70%), var(--color-fondo); }
+  .pildora { display: inline-flex; align-items: center; gap: .35rem; border-radius: 3px; padding: .1rem .55rem; font-size: .78rem; font-weight: 700; }
+  .cifra { font-variant-numeric: tabular-nums lining-nums; }
 }
 
 @media print {

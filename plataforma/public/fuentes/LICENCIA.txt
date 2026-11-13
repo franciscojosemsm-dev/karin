@@ -1,0 +1,3 @@
+Lato (© Łukasz Dziedzic) y Libre Baskerville (© Impallari Type) se distribuyen bajo la SIL Open Font License 1.1.
+Texto de la licencia: https://openfontlicense.org
+Los archivos se sirven desde este mismo sitio para no enviar la dirección IP de quien visita a un proveedor de fuentes.

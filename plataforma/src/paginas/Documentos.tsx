@@ -13,7 +13,7 @@ function Hoja({ titulo, archivo, marca, children, acta = false }: { titulo: stri
   const ref = useRef<HTMLDivElement>(null);
   const { id = '' } = useParams();
   function word() {
-    const html = `<html><head><meta charset="utf-8"><title>${titulo}</title><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1c2725}h1{font-size:16pt}h2{font-size:12.5pt;margin-top:14pt}p,li{line-height:1.4}.marca{color:#047857;font-weight:bold}</style></head><body>${ref.current!.innerHTML}</body></html>`;
+    const html = `<html><head><meta charset="utf-8"><title>${titulo}</title><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#142340}h1{font-size:16pt}h2{font-size:12.5pt;margin-top:14pt}p,li{line-height:1.4}.marca{color:#142340;font-weight:bold}</style></head><body>${ref.current!.innerHTML}</body></html>`;
     descargar(archivo, html, 'application/msword');
   }
   return (

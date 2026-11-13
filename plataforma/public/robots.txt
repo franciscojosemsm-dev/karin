@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /d/
+Disallow: /seguimiento
+Disallow: /panel
+Disallow: /mesa
+Disallow: /ingresar
+Disallow: /clave

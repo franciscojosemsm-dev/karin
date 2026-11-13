@@ -11,12 +11,44 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://lzcczwkaoouvuzlknxoh.supabase.co wss://lzcczwkaoouvuzlknxoh.supabase.co; manifest-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://lzcczwkaoouvuzlknxoh.supabase.co wss://lzcczwkaoouvuzlknxoh.supabase.co; manifest-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "no-referrer"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+# Canales, seguimiento, panel y mesa no deben aparecer en buscadores ni quedar guardados en cachés intermedias.
+[[headers]]
+  for = "/d/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/seguimiento"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/panel/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/mesa/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/fuentes/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/assets/*"

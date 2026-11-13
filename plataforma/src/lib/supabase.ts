@@ -13,7 +13,7 @@ export function mensajeError(e: unknown): string {
   if (/Invalid login credentials/i.test(m)) return 'Correo o contraseña incorrectos.';
   if (/Email not confirmed/i.test(m)) return 'Debe confirmar su correo antes de ingresar. Revise su bandeja de entrada.';
   if (/User already registered/i.test(m)) return 'Ya existe una cuenta con ese correo. Ingrese con su contraseña.';
-  if (/Password should be/i.test(m)) return 'La contraseña debe tener al menos 8 caracteres.';
+  if (/Password should be/i.test(m)) return 'La contraseña debe tener al menos 12 caracteres.';
   if (/violates check constraint/i.test(m)) return 'Revise los datos: algún campo está vacío o es demasiado largo.';
   if (/rate limit/i.test(m)) return 'Demasiados intentos seguidos. Espere unos minutos.';
   // Mensajes propios de las funciones de la base (ya están en castellano)
